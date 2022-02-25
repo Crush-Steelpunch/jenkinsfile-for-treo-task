@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: ''https://git.sr.ht/~baggypants/trio-task]]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://git.sr.ht/~baggypants/trio-task']]])
 		sh "docker build ."
             }
         }
