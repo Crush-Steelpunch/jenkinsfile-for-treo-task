@@ -21,6 +21,9 @@ pipeline {
 		sh "docker run -d --network treonet --name flask-app leonrobinson/flask-app"
                 sh "if docker inspect  mysql > /dev/null 2>&1 ; then docker stop mysql; docker rm mysql; fi"
 		sh "docker run -d --network treonet --name mysql leonrobinson/db"
+                sh "if docker inspect  nginx > /dev/null 2>&1 ; then docker stop nginx; docker rm nginx; fi"
+		sh "docker run -d --network treonet --name nginx -p 80:80 --mount type=bind,src=$(pwd)/nginx.conf,dst=/etc/nginx/nginx.conf"
+
             }
         }
     }
