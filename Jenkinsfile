@@ -18,7 +18,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh "if docker inspect  flask-app > /dev/null 2>&1 ; then docker stop flask-app; docker rm flask-app; fi"
-		sh "docker run -d --network treonet --name flask-app flask-app"
+		sh "docker run -d --network treonet --name flask-app leonrobinson/flask-app"
+                sh "if docker inspect  mysql > /dev/null 2>&1 ; then docker stop mysql; docker rm mysql; fi"
+		sh "docker run -d --network treonet --name mysql leonrobinson/db"
             }
         }
     }
