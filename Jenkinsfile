@@ -5,9 +5,9 @@ pipeline {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://git.sr.ht/~baggypants/trio-task']]])
 		sh "docker build -t leonrobinson/flask-app:latest flask-app/."
-		sh "docker tag leonrobinson/flask-app:latest leonrobinson/flask-app:$BUILD_DISPLAY_NAME"
+		sh "docker tag leonrobinson/flask-app:latest leonrobinson/flask-app:$BUILD_NUMBER"
 		sh "docker build -t leonrobinson/db:latest db/."
-		sh "docker tag leonrobinson/db:latest leonrobinson/db:$BUILD_DISPLAY_NAME"
+		sh "docker tag leonrobinson/db:latest leonrobinson/db:$BUILD_NUMBER"
             }
         }
 	stage('Network') {
